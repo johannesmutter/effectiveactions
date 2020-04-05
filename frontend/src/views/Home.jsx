@@ -15,12 +15,12 @@ const Home = () => {
       {/* <SearchBar /> */}
       <div className="trending-container">
         <h2>Trending actions</h2>
-        <div className="action-btn-wrapper">
-          {/* <ActionButton title="Physical" icon="/images/svg/doctor.svg" />
+        {/* <div className="action-btn-wrapper">
+          <ActionButton title="Physical" icon="/images/svg/doctor.svg" />
           <ActionButton title="Mental" icon="/images/svg/love.svg" />
           <ActionButton title="Community" icon="/images/svg/team.svg" />
-          <ActionButton title="Society" icon="/images/svg/globe.svg" /> */}
-        </div>
+          <ActionButton title="Society" icon="/images/svg/globe.svg" />
+        </div> */}
         <HomeSolutions />
       </div>
     </div>

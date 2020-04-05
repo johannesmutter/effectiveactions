@@ -1,0 +1,15 @@
+.login {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+.login label {
+    text-align: start;
+}
+
+.login button {
+    text-align: start;
+}

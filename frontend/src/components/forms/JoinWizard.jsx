@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Header, Icon, Modal } from "semantic-ui-react";
+import { Modal } from "semantic-ui-react";
 
 import "../../styles/register.css";
 
@@ -20,12 +20,6 @@ const JoinWizard = ({ trigger }) => (
     <Modal.Actions>
       <UserType icon="/images/users/citizen.png" label="Citizen" />
       <UserType icon="/images/users/expert.png" label="Expert" />
-      {/* <Button basic color='red' inverted>
-        <Icon name='remove' /> No
-      </Button>
-      <Button color='green' inverted>
-        <Icon name='checkmark' /> Yes
-      </Button> */}
     </Modal.Actions>
   </Modal>
 );
