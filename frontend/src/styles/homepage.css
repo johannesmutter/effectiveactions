@@ -1,3 +1,41 @@
 .trending-container {
+    display: flex;
+    flex-direction: column;
     padding: 30px 0;
+}
+
+.action-btn-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-btn {
+    width: 120px;
+    height: 120px;
+    border-radius: 15px;
+    color: #fff;
+    background-color: #DE7028;
+    border: 1px solid #DE7028;
+    margin: 0 10px;
+}
+
+.action-btn h4 {
+    margin: 10px 0;
+}
+
+.action-btn img {
+    width: 50%;
+}
+
+.home-search-button {
+    position: relative;
+}
+
+.home-search-link {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    padding: 12px 0;
 }

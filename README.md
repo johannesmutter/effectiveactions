@@ -12,7 +12,7 @@ run "npm install" in both the backend and frontend folder
 ```
 cd frontend
 npm install
-cd backend
+cd api
 npm install
 ```
 ## Run

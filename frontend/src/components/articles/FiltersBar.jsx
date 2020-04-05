@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Icon, Label } from "semantic-ui-react";
-import SearchBar from "./../SearchBar";
+import Search from "./filters/Search";
 import Topic from "./filters/Topic";
 import Tag from "./filters/Tag";
 import Region from "./filters/Region";
@@ -19,7 +19,10 @@ const FiltersBar = ({
   return (
     <div id="filters-bar">
       <div className="first-part">
-        <SearchBar handleFilters={handleFilters} />
+        <Search
+          handleFilters={handleFilters}
+          filterValues={currentFilters.search}
+        />
         <Topic handleFilters={handleFilters} />
         <Tag handleFilters={handleFilters} />
         <Region
@@ -29,11 +32,17 @@ const FiltersBar = ({
         <Endorsement handleFilters={handleFilters} />
       </div>
       <div className="second-part">
-        <ClearFilters resetFilters={resetFilters} />
-        <Button basic size="mini">
-          {solutionsResultNumber} results
-        </Button>
-        <SortBy handleFilters={handleFilters} />
+        <div id="clear-filter">
+          <ClearFilters resetFilters={resetFilters} />
+        </div>
+        <div id="results-number">
+          <Button basic size="mini">
+            {solutionsResultNumber} results
+          </Button>
+        </div>
+        <div id="sort-by">
+          <SortBy handleFilters={handleFilters} />
+        </div>
       </div>
     </div>
   );

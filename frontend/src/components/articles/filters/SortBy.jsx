@@ -4,17 +4,17 @@ const sortOptions = [
   {
     key: "all",
     text: "Name",
-    value: "all",
+    value: "Name",
   },
   {
     key: "validated",
     text: "Validated",
-    value: "validated",
+    value: "Featured",
   },
   {
     key: "newest",
     text: "Newest",
-    value: "newest",
+    value: "Added Date",
   },
 ];
 const orderOptions = [
@@ -34,15 +34,15 @@ const SortBy = ({ handleFilters }) => {
   return (
     <>
       <span>
-        Sort by{" "}
+        Sort by&nbsp;
         <Dropdown
           onChange={handleFilters}
           inline
           options={sortOptions}
           defaultValue={sortOptions[0].value}
           className="sort"
-        />{" "}
-        order by{" "}
+        />&nbsp;
+        order by&nbsp;
         <Dropdown
           onChange={handleFilters}
           inline

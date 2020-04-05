@@ -24,5 +24,10 @@
 }
 
 #filters-bar .second-part>* {
-    margin: 0 35px
+    margin: 0 35px;
+    min-width: 200px;
+}
+
+#filters-bar #clear-filter {
+    text-align: left;
 }

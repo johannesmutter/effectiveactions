@@ -1,0 +1,35 @@
+.reg-user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.reg-user button {
+    border: none;
+    margin: 0 10px;
+}
+
+.reg-user h4 {
+    margin: 0 0 10px;
+}
+
+.user-btn img {
+    width: 120px;
+}
+
+.modal div.actions {
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal div.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

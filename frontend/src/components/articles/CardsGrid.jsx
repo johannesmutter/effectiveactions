@@ -3,17 +3,14 @@ import Card from "./Card";
 import FiltersBar from "./FiltersBar";
 import "../../styles/grid.css";
 
-async function getSolutionsByFilter(filter) {
+async function getSolutionsByFilter(filters) {
+  console.log("running query with filter", filters);
   const res = await fetch("http://localhost:9060/solutions", {
     method: "post",
-    body: JSON.stringify({ filter: filter }),
+    body: JSON.stringify(filters),
     headers: { "Content-type": "application/json" },
   });
-
   const data = await res.json();
-
-  console.log("data received:", data);
-
   if (res.status === 200) {
     return data.records;
   } else {
@@ -21,7 +18,7 @@ async function getSolutionsByFilter(filter) {
   }
 }
 
-const CardsGrid = () => {
+const CardsGrid = ({ search }) => {
   const [filters, setFilters] = useState({
     search: "",
     sort: [],
@@ -33,8 +30,6 @@ const CardsGrid = () => {
     forProfit: null,
     stakeholder: [],
     endorsement: [],
-    sort: "",
-    order: "",
   });
   const resetFilters = () => {
     setFilters({
@@ -48,8 +43,6 @@ const CardsGrid = () => {
       forProfit: null,
       stakeholder: [],
       endorsement: [],
-      sort: "",
-      order: "",
     });
   };
   const handleFilters = (e, data) => {
@@ -59,43 +52,30 @@ const CardsGrid = () => {
   };
 
   useEffect(() => {
-    console.log("getting solutions using filters", filters);
-    getSolutionsByFilter(filters);
+    (async () => {
+      const result = await getSolutionsByFilter(filters);
+      console.log("received solutions: ", result);
+      setSolutions(result);
+    })();
   }, [filters]);
-  const [solutions, setSolutions] = useState([]);
 
   // Display all solutions on load
   useEffect(() => {
-    setFilters({ sort: ["Name"], order: "ASC" });
+    search
+      ? setFilters({ search: search, sort: ["Name"], order: "ASC" })
+      : setFilters({ sort: ["Name"], order: "ASC" });
   }, []);
+  const [solutions, setSolutions] = useState([]);
 
   return (
     <div>
+      <h1>Browse effective actions</h1>
       <FiltersBar
         currentFilters={filters}
         resetFilters={resetFilters}
         handleFilters={handleFilters}
         solutionsResultNumber={solutions.length}
       />
-      {console.log(solutions)}
-      <h1>solutions</h1>
-      <div className="menu">
-        <a
-          href="#"
-          onClick={() => setFilters({ sort: ["Name"], order: "ASC" })}
-        >
-          All Solutions
-        </a>
-        <a
-          href="#"
-          onClick={() => setFilters({ sort: ["Added Date"], order: "ASC" })}
-        >
-          Newest
-        </a>
-        <a href="#" onClick={() => setFilters({ validated: true })}>
-          Validated
-        </a>
-      </div>
       <div className="grid">
         {solutions.length &&
           solutions.map((solution) => (
