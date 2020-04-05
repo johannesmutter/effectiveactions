@@ -1,0 +1,28 @@
+#filters-bar {
+    margin: 25px 0;
+}
+
+#filters-bar .first-part {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+#filters-bar .first-part>* {
+    margin: 0 35px;
+}
+
+#filters-bar .first-part .searchbar {
+    min-width: 45%;
+}
+
+#filters-bar .second-part {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+#filters-bar .second-part>* {
+    margin: 0 35px
+}

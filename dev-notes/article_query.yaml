@@ -1,0 +1,204 @@
+openapi: 3.0.1
+info:
+  title: Documents API
+  description: Documents API for EffectiveActions MVP.
+  version: 1.0.0
+servers:
+  - url: 'http://localhost'
+paths:
+  /articles/{article}:
+    get:
+      summary: Returns a specific article
+      description: Get the complete article ready for prime-time (does not include the minified version)
+      parameters:
+        - name: article
+          in: path
+          required: true
+          example: e0e6d700-6be8-41a7-be11-3914021aa2fd
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/article_content'
+              example:
+                master_id: ba20152a-ac98-436d-8902-6b0f11a5cdee
+                document_id: e0e6d700-6be8-41a7-be11-3914021aa2fd
+                community_votes: 128
+                expert_rating: 500
+                version: 1
+                culture: EN
+                language: en-US
+                title: Calling circle for local old folk's home
+                goal: Set up [i]Google Hangout[/i] group and chat.
+                outcome: But I've put some [b]markup[b] in here so it's done!
+                simple_tags: [simples, no_cost, local, no_remote]
+                value_tags:
+                  - tag: major_category
+                    value: mental
+                  - tag: sub_category
+                    value: elder_care
+        default:
+          description: Something went wrong
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_schema'
+  /articles:
+    get:
+      summary: Returns a list of article headers
+      description: For articles matching the desired culture, pull mini version from DB. Empty list for no match
+      parameters:
+        - name: culture
+          in: query
+          required: true
+          example: NORTH_AMERICAN_EN
+        - name: search_text
+          in: query
+          required: true
+          description: The processed search box text
+        - name: tag_list
+          in: query
+          required: false
+          description: The list of tags to filter the query down. Query might be for '*'. PHYSICAL, MENTAL, etc models as tags
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/article_search'
+              example:
+                - document_id: e0e6d700-6be8-41a7-be11-3914021aa2fd
+                  version: 1
+                  culture: EN
+                  language: en-US
+                  community_votes: 128
+                  expert_rating: 500
+                  title: Calling circle for local old folk's home
+                  goal: Reduce social isolation
+                  simple_tags: [simple, no_cost, local, no_remote]
+                  value_tags:
+                    - tag: major_category
+                      value: mental
+                    - tag: sub_category
+                      value: elder_care
+                - document_id: da4be72c-b538-48b1-b935-a1feb411d8ce
+                  version: 3
+                  culture: EN
+                  language: en-US
+                  community_votes: 12
+                  expert_rating: 0
+                  title: Elder dog walking
+                  goal: Increased virus killing doggy saliva episoed
+                  simple_tags: [simple, no_cost, barking]
+                  value_tags:
+                    - tag: major_category
+                      value: physical
+                    - tag: sub_category
+                      value: elder_care
+        default:
+          description: Something went wrong
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_schema'
+
+
+
+components:
+  schemas:
+    article_content:
+      description: A single document is being opened. This is a user looking at a particular action
+      type: object
+      properties:
+        master_id:
+          type: string
+          description: The UUID representing this cluster of documents
+        document_id:
+          type: string
+          description: The UUID representing this specific doc. Translations/versions will share master_id
+        community_votes:
+          type: integer
+          description: How highly the action has been rated by the public
+        expert_rating:
+          type: integer
+          description: How highly the action has been rated by respected experts (limit to allowed text values?)
+        version:
+          type: integer
+          description: Sub-identifier in case of multiple iterations of doc
+        culture:
+          type: string
+          description: Western Europe, North America, Latin America - how do we want to slice the world?
+        language:
+          type: string
+          description: BCP-47 tag for language (i.e fr-CA/fr-FR/en-GB)
+        title:
+          type: string
+          description: The headline for the action
+        goal:
+          type: string
+          description: What was the action attended to achieve?
+        outcome:
+          type: string
+          description: Markup - what occurred
+        simple_tags:
+          type: array
+          items:
+            type: string
+        value_tags:
+          type: array
+          items:
+            type: object
+            properties:
+              tag:
+                type: string
+              value:
+                type: string
+    article_search:
+      description: An example set of responses
+      type: array
+      items:
+        properties:
+          document_id:
+            type: string
+            description: The UUID representing this specific doc. Translations/versions will share master_id
+          culture:
+            type: string
+            description: Western Europe, North America, Latin America - how do we want to slice the world?
+          language:
+            type: string
+            description: BCP-47 tag for language (i.e fr-CA/fr-FR/en-GB)
+          community_votes:
+            type: integer
+            description: How highly the action has been rated by the public
+          expert_rating:
+            type: integer
+            description: How highly the action has been rated by respected experts (limit to allowed text values?)
+          title:
+            type: string
+            description: The headline for the action
+          goal:
+            type: string
+            description: What was the action attended to achieve? All we show at top. Replace with shortened ver?
+          simple_tags:
+            type: array
+            items:
+              type: string
+          value_tags:
+            type: array
+            items:
+              type: object
+              properties:
+                tag:
+                  type: string
+                value:
+                  type: string
+
+
+
+    error_schema:
+      description: The schema used in the event of failures
+      type: string
+      default:

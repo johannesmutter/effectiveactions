@@ -1,0 +1,34 @@
+.form-action {
+  display: flex;
+  /* justify-content: space-around; */
+}
+
+.tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.tags .tag {
+  background-color: rgb(231, 214, 189);
+  border-radius: 10px;
+  margin: 5px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.tags .tag.selected {
+  background-color: rgb(216, 177, 119);
+}
+
+.form-action .form-group {
+  text-align: start;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 40px;
+}
