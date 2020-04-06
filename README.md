@@ -11,7 +11,7 @@ Notice: The Database is not live yet. But the content can be [explored here on A
 ![Effective Actions Platform](/dev-notes/effective-actions.jpg)
 
 ## Contributors
-Adam Woodhall ([website](http://www.inspiring-sustainability.com/)), Johannes Mutter ([Twitter](https://twitter.com/JohannesMutter)), George Bakkar ([Twitter](https://twitter.com/GeorgeBakkar)), Yannick Bourenane ([GitHub](https://github.com/yannick-bourenane)), Kathleen Domingo ([GitHub](https://twitter.com/kathdomingo)), David Vincent ([website](http://davidvincentux.com)), Abdulaziz Al-Attar ([LinkedIn](https://www.linkedin.com/in/abdulaziz-alattar-464150124)), Ben Glanton, Natalie, Pauly Suchy
+Adam Woodhall ([website](http://www.inspiring-sustainability.com/)), Johannes Mutter ([Twitter](https://twitter.com/JohannesMutter)), George Bakkar ([Twitter](https://twitter.com/GeorgeBakkar)), Yannick Bourenane ([GitHub](https://github.com/yannick-bourenane)), Kathleen Domingo ([Twitter](https://twitter.com/kathdomingo)), David Vincent ([website](http://davidvincentux.com)), Abdulaziz Al-Attar ([LinkedIn](https://www.linkedin.com/in/abdulaziz-alattar-464150124)), Ben Glanton, Natalie, Pauly Suchy
 
 
 ## For Developers:
