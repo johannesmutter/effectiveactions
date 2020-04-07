@@ -2,6 +2,12 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "description": "Effective Actions for solving the COVID-19 pandemic",
+  "main": "index.js",
+  "devDependencies": {},
+  "keywords": [],
+  "author": "Johannes Mutter",
+  "license": "ISC",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -19,7 +25,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:9060",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -35,10 +40,5 @@
       "last 1 safari version"
     ]
   },
-  "description": "Effective Actions for solving the COVID-19 pandemic",
-  "main": "index.js",
-  "devDependencies": {},
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "proxy": "http://localhost:9060"
 }

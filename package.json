@@ -5,7 +5,8 @@
   "scripts": {
     "client": "cd frontend && npm run start",
     "server": "cd api && node server.js",
-    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "build": "cd frontend && npm run build"
   },
   "main": "frontend/src/index.js",
   "repository": {
@@ -17,5 +18,15 @@
   "bugs": {
     "url": "https://github.com/kathd/effectiveactions/issues"
   },
-  "homepage": "https://github.com/kathd/effectiveactions#readme"
+  "homepage": "https://github.com/kathd/effectiveactions#readme",
+  "dependencies": {
+    "concurrently": "^5.1.0",
+    "react-scripts": "^3.4.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.1",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.88.2"
+  }
 }
