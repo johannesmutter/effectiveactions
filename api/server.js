@@ -1,10 +1,12 @@
+require('dotenv').config();
+
 const express = require('express'),
       http = require('http'),
       cors = require('cors'),
       helmet = require('helmet'),
       app = express(),
       bodyParser = require('body-parser'),
-      port = 9060,  
+      port = 9060,
       server = http.createServer(app),
       airtable = require("./airtable.js");
 
