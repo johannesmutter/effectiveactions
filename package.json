@@ -1,0 +1,21 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "Effective Actions is designed to be the trusted global source for best practices, tools, and resources regarding COVID-19. Our mission is to empower people to combat the impact and effect of the COVID-19 pandemic.",
+  "scripts": {
+    "client": "cd frontend && npm run start",
+    "server": "cd api && node server.js",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+  },
+  "main": "frontend/src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kathd/effectiveactions.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kathd/effectiveactions/issues"
+  },
+  "homepage": "https://github.com/kathd/effectiveactions#readme"
+}

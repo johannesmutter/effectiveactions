@@ -14,11 +14,12 @@
     "semantic-ui-react": "^0.88.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start && node ./api/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:9060",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -34,7 +35,7 @@
       "last 1 safari version"
     ]
   },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "description": "Effective Actions for solving the COVID-19 pandemic",
   "main": "index.js",
   "devDependencies": {},
   "keywords": [],
