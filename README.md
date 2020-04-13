@@ -21,18 +21,12 @@ React, Node.js (with express)
 
 ### Installation
 1. download or clone the repository.
-2. run `npm install` in both the „api“ and „frontend“ folder
+2. Run `npm install` in the root of the repository, and run `yarn install` in the "frontend" folder
 
 ### Running the app
-1. Run the server from api folder
-```
-node server.js
-```
-2. Run the react app from frontend folder in a separate terminal window:
-```
-npm run start
-```
-
+1. Install the Zeit [now cli](https://zeit.co/docs/now-cli).
+2. Copy the `.env.template` into a `.env` file, and add your credentials.
+3. Run `now dev` from the root of the repository.
 
 ## Airtable
 
