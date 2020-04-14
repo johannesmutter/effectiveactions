@@ -27,6 +27,7 @@ React, Node.js (with express)
 1. Install the Zeit [now cli](https://zeit.co/docs/now-cli).
 2. Copy the `.env.template` into a `.env` file, and add your credentials.
 3. Run `now dev` from the root of the repository.
+4. Make sure process.env are set in the general project settings under section 'Environment Variables'
 
 ## Airtable
 

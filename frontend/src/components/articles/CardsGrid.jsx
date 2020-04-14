@@ -4,13 +4,14 @@ import FiltersBar from "./FiltersBar";
 import "../../styles/grid.css";
 
 async function getSolutionsByFilter(filters) {
-  console.log("running query with filter", filters);
-  const res = await fetch("http://localhost:9060/solutions", {
+  // console.log("running query with filter", filters);
+  const res = await fetch("/api/solutions", {
     method: "post",
     body: JSON.stringify(filters),
     headers: { "Content-type": "application/json" },
   });
   const data = await res.json();
+  // console.log('data',data);
   if (res.status === 200) {
     return data.records;
   } else {
@@ -54,17 +55,17 @@ const CardsGrid = ({ search }) => {
   useEffect(() => {
     (async () => {
       const result = await getSolutionsByFilter(filters);
-      console.log("received solutions: ", result);
+      // console.log("received solutions: ", result);
       setSolutions(result);
     })();
   }, [filters]);
 
   // Display all solutions on load
-  useEffect(() => {
-    search
-      ? setFilters({ search: search, sort: ["Name"], order: "ASC" })
-      : setFilters({ sort: ["Name"], order: "ASC" });
-  }, []);
+  // useEffect(() => {
+  //   search
+  //     ? setFilters({ search: search, sort: ["Name"], order: "ASC" })
+  //     : setFilters({ sort: ["Name"], order: "ASC" });
+  // }, []);
   const [solutions, setSolutions] = useState([]);
 
   return (

@@ -4,7 +4,6 @@ import "../../styles/card.css";
 const Card = ({ id, data }) => {
   return (
     <div className="card" key={id}>
-      {console.log(data)}
       {data && data.Media && data.Media[0].thumbnails && (
         <img src={data.Media[0].thumbnails.large.url} alt={data.Name} />
       )}

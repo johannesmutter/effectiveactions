@@ -6,70 +6,76 @@ Airtable.configure({
 });
 const base = Airtable.base(process.env.AIRTABLE_BASE);
 
-console.log("loaded airtable");
+module.exports = async (req, res) => {
 
-module.exports = (req, res) => {
-  const filters = req.body;
+  const { body } = req;
 
-  console.log("filters", filters);
+  let order = '';
+  let sorting = [];
+  let search = '';
 
-  const order =
-    typeof filters.order === "string" &&
-    (filters.order.toLowerCase() === "asc" ||
-      filters.order.toLowerCase() === "desc")
+  if(typeof(body) !== 'undefined'){
+    const filters = req.body;
+    if ( Object.keys(filters).length !== 0){
+      console.log("filters", filters);
+
+      order = typeof filters.order === "string"
+      && (filters.order.toLowerCase() === "asc" || filters.order.toLowerCase() === "desc")
       ? filters.order.toLowerCase()
       : "asc";
 
-  let sorting = [];
-  sorting = Array.isArray(filters.sort)
-    ? filters.sort.map((item) => {
-      return {field: item, direction: order }
-    })
-    : [{field: filters.sort, direction: order}];
+      sorting = Array.isArray(filters.sort)
+      ? filters.sort.map((item) => {
+        return {field: item, direction: order }
+      })
+      : [{field: filters.sort, direction: order}];
 
-  const search = filters.search && filters.search.toLowerCase();
-  console.log('search',search)
-  console.log('sorting',sorting)
+      search = filters.search && filters.search.toLowerCase();
+      console.log('search',search);
+      console.log('sorting',sorting);
+    }
 
-  const region = filters.region;
+  }
 
   let accumulator = [];
   base("Solutions")
-    .select({
-      maxRecords: 9,
-      view: "All Solutions",
-      fields: [
-        "Name",
-        "Summary",
-        "Featured",
-        "Link",
-        "Media",
-        "Type",
-        "Challenges addressed",
-        "Stage",
-      ],
-      // filterByFormula: `"({Region} = ${region && region[0]})"`,
-      filterByFormula: "SEARCH('" + search + "', LOWER({Name}))",
-      // filterByFormula: "SEARCH('3D', {Name})",
-      pageSize: 100,
-      sort: sorting,
-    })
-    .eachPage(
-      function page(records, fetchNextPage) {
-        records.forEach(function (record) {
-          console.log("Retrieved", record.get("Name"));
-          accumulator.push(record._rawJson);
-        });
-        fetchNextPage();
-      },
-      function done(err) {
-        if (err) {
-          console.error(err);
-          return;
-        }
-        return res.status(200).json({
-          records: accumulator,
-        });
+  .select({
+    maxRecords: 50,
+    view: "All",
+    fields: [
+      "Name",
+      "Summary",
+      "Featured",
+      "Link",
+      "Media",
+      "Type",
+      "Challenges addressed",
+      "Stage",
+    ],
+    // filterByFormula: `"({Region} = ${region && region[0]})"`,
+    filterByFormula: "SEARCH('" + search + "', LOWER({Name}))",
+    // filterByFormula: "SEARCH('3D', {Name})",
+    pageSize: 100,
+    sort: sorting,
+  })
+  .eachPage(
+    function page(records, fetchNextPage) {
+      records.forEach(function (record) {
+        console.log("Retrieved", record.get("Name"));
+        accumulator.push(record._rawJson);
+      });
+      fetchNextPage();
+    },
+    function done(err) {
+      if (err) {
+        console.error(err);
+        return res.status(500);
       }
-    );
+      return res.status(200).json({
+        records: accumulator,
+      });
+    }
+  );
+
+
 };
